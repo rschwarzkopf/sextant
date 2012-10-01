@@ -4,7 +4,12 @@ class Rails::RoutesController < ActionController::Base
   before_filter :require_local!
 
   def index
-    @routes = Sextant.format_routes
+    if params.include? :q
+      @routes = Sextant.filter(params[:q])
+      @filter = params[:q]
+    else
+      @routes = Sextant.parsed_routes
+    end
   end
 
   private

@@ -1,9 +1,22 @@
 <h2>
-  Routes
+  Routes <% unless @filter.nil? %>containing '<%= @filter %>' <% end %>
 </h2>
 
-<p>
-  Routes match in priority from top to bottom
-</p>
-
-<p><pre><%= @routes %></pre></p>
+<table id="hor-minimalist-a">
+	<thead>
+		<tr>
+			<th scope="col">name</th>
+			<th scope="col">method</th>
+			<th scope="col">url</th>
+			<th scope="col">controller#action</th>
+		</tr>
+	</thead>
+<% @routes.each do |route| %>
+	<tr>
+		<td><%= route[0] %></td>
+		<td><%= route[1] %></td>
+		<td><%= route[2] %></td>
+		<td><%= route[3] %></td>
+	</tr>
+<% end %>
+</table>
